@@ -5,8 +5,11 @@ defmodule ApiWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", ApiWeb do
+  scope "/api" do
     pipe_through :api
+
+    forward "/graphql", Absinthe.Plug, schema: ApiWeb.Schema
+    forward "/graphiql", Absinthe.Plug.GraphiQL, schema: ApiWeb.Schema
   end
 
   # Enable LiveDashboard in development
