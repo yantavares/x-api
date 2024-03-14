@@ -1,6 +1,7 @@
 defmodule ApiWeb.Schema.Types.Post do
   use Absinthe.Schema.Notation
 
+  @desc "Post logic representation."
   object :post do
     field :id, non_null(:id)
     field :text, non_null(:string)

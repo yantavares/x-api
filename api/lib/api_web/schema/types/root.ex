@@ -3,9 +3,12 @@ defmodule ApiWeb.Schema.Types.Root do
 
   alias Crudry.Middlewares.TranslateErrors
   alias ApiWeb.Resolvers.User, as: UserResolver
+  alias ApiWeb.Resolvers.Post, as: PostResolver
 
   import_types(ApiWeb.Schema.Types.User)
+  import_types(ApiWeb.Schema.Types.Post)
 
+  @desc "Root query. This is the entry point for all queries."
   object :root_query do
     field :user, type: :user do
       arg :id, non_null(:id)
@@ -27,6 +30,19 @@ defmodule ApiWeb.Schema.Types.Root do
 
       resolve &UserResolver.update/2
       middleware TranslateErrors
+    end
+
+    field :create_post, type: :post do
+      arg :input, non_null(:create_post_input)
+
+      resolve &PostResolver.create/2
+      middleware TranslateErrors
+    end
+
+    field :add_like_to_post, type: :post do
+      arg :id, non_null(:id)
+
+      resolve &PostResolver.add_like/2
     end
   end
 end
