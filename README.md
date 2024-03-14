@@ -61,6 +61,8 @@ Follow these steps to get your development environment set up:
 
 To explore the GraphQL API and documentation, visit [`http://localhost:4000/api/graphiql`](http://localhost:4000/api/graphiql) in your web browser. This interface allows you to execute queries and mutations against your API in real-time.
 
+To see query examples, please read the [`README`](api/README.md) file inside `api` folder.
+
 ## Running Tests
 
 To run the tests, use the following command:
