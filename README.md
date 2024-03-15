@@ -31,7 +31,19 @@ Follow these steps to get your development environment set up:
 
 3. **Create and Migrate Your Database**
 
-   Make sure your PostgreSQL service is running. Then, create and migrate your database:
+   Make sure your PostgreSQL service is running.
+
+   From `dev.exs`:
+   
+   ```ex
+   config :api, Api.Repo,
+      username: "postgres",
+      password: "postgres",
+      hostname: "localhost",
+      database: "api_dev",
+   ```
+
+   Then, create and migrate your database:
 
    ```bash
    mix ecto.setup
@@ -39,7 +51,7 @@ Follow these steps to get your development environment set up:
 
    This command is a shortcut for `mix ecto.create`, `mix ecto.migrate`, and `mix run priv/repo/seeds.exs` to seed the database.
 
-4. **Start the Phoenix Server**
+5. **Start the Phoenix Server**
 
    You can start your Phoenix app in one of two ways:
 
