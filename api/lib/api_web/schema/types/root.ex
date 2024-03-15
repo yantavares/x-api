@@ -44,5 +44,12 @@ defmodule ApiWeb.Schema.Types.Root do
 
       resolve &PostResolver.add_like/2
     end
+
+    field :add_follower, type: :add_follower_response do
+      arg :input, non_null(:add_follower_input)
+
+      resolve &UserResolver.add_follower/2
+      middleware TranslateErrors
+    end
   end
 end

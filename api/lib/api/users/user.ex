@@ -3,6 +3,7 @@ defmodule Api.Users.User do
   import Ecto.Changeset
 
   alias Api.Posts.Post
+  alias Api.Users.Follower
 
   @required_params [:nickname, :email, :age]
 
@@ -12,6 +13,9 @@ defmodule Api.Users.User do
     field :age, :integer
 
     has_many :posts, Post
+    has_many :followers, Follower, foreign_key: :following_id
+    has_many :following, Follower, foreign_key: :follower_id
+
     timestamps()
   end
 
