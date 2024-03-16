@@ -14,6 +14,7 @@ defmodule ApiWeb.ConnCase do
   by setting `use ApiWeb.ConnCase, async: true`, although
   this option is not recommended for other databases.
   """
+  require Phoenix.ChannelTest
 
   use ExUnit.CaseTemplate
 
@@ -23,16 +24,21 @@ defmodule ApiWeb.ConnCase do
       @endpoint ApiWeb.Endpoint
 
       use ApiWeb, :verified_routes
+      use Absinthe.Phoenix.SubscriptionTest, schema: ApiWeb.Schema
 
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
       import ApiWeb.ConnCase
-    end
-  end
+      import Phoenix.ChannelTest
 
-  setup tags do
-    Api.DataCase.setup_sandbox(tags)
-    {:ok, conn: Phoenix.ConnTest.build_conn()}
+      setup tags do
+        {:ok, socket} = Phoenix.ChannelTest.connect(ApiWeb.ApiSocket, %{})
+        {:ok, socket} = Absinthe.Phoenix.SubscriptionTest.join_absinthe(socket)
+
+        Api.DataCase.setup_sandbox(tags)
+        {:ok, conn: Phoenix.ConnTest.build_conn(), socket: socket}
+      end
+    end
   end
 end

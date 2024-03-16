@@ -10,4 +10,5 @@ defmodule Api do
 
   defdelegate create_post(params), to: Posts.Create, as: :call
   defdelegate add_like_to_post(id), to: Posts.AddLike, as: :call
+  defdelegate get_user_posts(user, page, per_page), to: Posts.Get, as: :call
 end

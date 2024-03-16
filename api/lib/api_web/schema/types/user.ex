@@ -1,6 +1,8 @@
 defmodule ApiWeb.Schema.Types.User do
   use Absinthe.Schema.Notation
 
+  alias ApiWeb.Resolvers.User, as: UserResolver
+
   @desc "User logic representation."
   object :user do
     field :id, non_null(:id)
@@ -8,7 +10,14 @@ defmodule ApiWeb.Schema.Types.User do
     field :age, non_null(:integer), description: "Needs to be greater or equal to 18."
     field :email, non_null(:string)
 
-    field :posts, list_of(:post)
+    field :posts, list_of(:post),
+      description: "Returns paginated posts: Default values -> page: 1, per_page: 10" do
+      arg :page, :integer, default_value: 1
+      arg :per_page, :integer, default_value: 10
+
+      resolve &UserResolver.get_user_posts/3
+    end
+
     field :followers, list_of(:follower)
     field :following, list_of(:following)
   end

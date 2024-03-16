@@ -12,8 +12,10 @@ defmodule ApiWeb.Router do
 
     forward "/graphiql", Absinthe.Plug.GraphiQL,
       socket: ApiWeb.ApiSocket,
-      schema: ApiWeb.Schema,
-      interface: :simple
+      schema: ApiWeb.Schema
+
+    #! Uncomment to test subscrptions
+    # interface: :simple
   end
 
   # Enable LiveDashboard in development
