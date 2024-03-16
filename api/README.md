@@ -2,8 +2,6 @@
 
 Simple API made with Elixir, GraphQL and Absinthe to achieve a Twitter-like experience.
 
-To add the `example queries` section to your README, incorporating the GraphQL queries you've provided, here is a suggested format. Make sure to replace your existing content appropriately or add this section where it best fits within your README structure.
-
 ## Example Queries
 
 In this section, you'll find examples of GraphQL queries and mutations that can be executed against the API. For more comprehensive information and all available responses, please refer to the documentation accessible at `localhost:4000/api/graphiql` after starting the Phoenix server.
