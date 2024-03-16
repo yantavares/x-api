@@ -100,7 +100,7 @@ mutation {
 
 ### New Subscription (Only in simple mode)
 
-To enable testing of subscriptions in GraphiQL, you should run GraphiQL in simple mode. To do this, modify the `/graphiql` route in your `router.ex` file by adding the `interface: :simple option.
+To enable testing of subscriptions in GraphiQL, you should run GraphiQL in simple mode. To do this, modify the `/graphiql` route in your `router.ex` file by adding the `interface: :simple` option.
 
 ```graphql
 subscription {
