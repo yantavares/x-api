@@ -52,4 +52,12 @@ defmodule ApiWeb.Schema.Types.Root do
       middleware TranslateErrors
     end
   end
+
+  object :root_subscription do
+    field :new_follow, :add_follower_response do
+      config fn _args, _xontext ->
+        {:ok, topic: "new_follow_topic"}
+      end
+    end
+  end
 end

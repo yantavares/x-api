@@ -9,7 +9,11 @@ defmodule ApiWeb.Router do
     pipe_through :api
 
     forward "/graphql", Absinthe.Plug, schema: ApiWeb.Schema
-    forward "/graphiql", Absinthe.Plug.GraphiQL, schema: ApiWeb.Schema
+
+    forward "/graphiql", Absinthe.Plug.GraphiQL,
+      socket: ApiWeb.ApiSocket,
+      schema: ApiWeb.Schema,
+      interface: :simple
   end
 
   # Enable LiveDashboard in development
