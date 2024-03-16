@@ -4,9 +4,6 @@ defmodule ApiWeb.Resolvers.User do
   def update(%{input: params}, _context), do: Api.update_user(params)
 
   def add_follower(%{input: %{user_id: user_id, follower_id: follower_id}}, _context) do
-    with {:ok, result} <- Api.add_follower(user_id, follower_id) do
-      Absinthe.Subscription.publish(ApiWeb.Endpoint, result, new_follow: "new_follow_topic")
-      {:ok, result}
-    end
+    Api.add_follower(user_id, follower_id)
   end
 end
